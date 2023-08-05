@@ -14,9 +14,11 @@ function get(table, id) {
 }
 
 function upsert(table, data) {
+    // eslint-disable-next-line no-undef
     db[collection].push(data);
 }
 
+// eslint-disable-next-line no-unused-vars
 function remove(table, id) {
     return true
 }

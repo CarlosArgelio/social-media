@@ -9,5 +9,6 @@ const app = express()
 app.use('/api/users', users)
 
 app.listen(config.api.port, () => {
+    // eslint-disable-next-line no-console
     console.log(`Server running on port ${config.api.port}`);
 });

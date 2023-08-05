@@ -5,6 +5,7 @@ function formatResponse(req, res, message, status, statusError, details) {
   let statusMessage = message;
 
   if (details) {
+    // eslint-disable-next-line no-console
     console.log(details);
   }
 
@@ -19,8 +20,6 @@ function formatResponse(req, res, message, status, statusError, details) {
       Body: statusMessage
   });
 }
-
-
 
 exports.success = function (req, res, message, status) {
   message = message || '';

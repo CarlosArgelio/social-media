@@ -1,14 +1,16 @@
 const express = require('express');
 
-const response = require('../../../network/response')
+const response = require('../../../network/response');
+const Controller = require('./controller');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', function (req, res) {
   try {
-    response.success(req, res, 'Hello World!', 200);
+    const list = Controller.list();
+    response.success(req, res, list, 200);
   } catch (error) {
-    //
+    response.error(req, res, 'Unexpected error', 400, error);
   }
 })
 

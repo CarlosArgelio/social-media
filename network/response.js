@@ -22,14 +22,14 @@ function formatResponse(req, res, message, status, statusError, details) {
 }
 
 exports.success = function (req, res, message, status) {
-  message = message || '';
-  status = status || 200;
-  formatResponse(req, res, message, status, false)
+  let messageResponse = message || '';
+  let statusCode = status || 200;
+  formatResponse(req, res, messageResponse, statusCode, false)
 }
 
 exports.error = function (req, res, message, status, details) {
-  message = message || 'Internal server error';
-  status = status || 500;
-  details = details || '';
-  formatResponse(req, res, message, status, false, details)
+  let messageResponse = message || 'Internal server error';
+  let statusCode = status || 500;
+  let detailsConsole = details || '';
+  formatResponse(req, res, messageResponse, statusCode, false, detailsConsole)
 }

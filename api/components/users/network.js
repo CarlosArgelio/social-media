@@ -25,4 +25,14 @@ router.get('/:id', function (req, res) {
     });
 });
 
+router.post('/', function (req, res) {
+  Controller.upsert(req.body)
+    .then((user) => {
+      response.success(req, res, user, 201);
+    })
+    .catch((err) => {
+      response.error(req, res, err, 500, err);
+    });
+});
+
 module.exports = router

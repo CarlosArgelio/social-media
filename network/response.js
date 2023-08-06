@@ -1,4 +1,5 @@
 const { formatDate } = require('../utils/datetimes')
+// eslint-disable-next-line no-unused-vars
 const { legthBytes } = require('../utils/legth.bytes')
 
 function formatResponse(req, res, message, status, statusError, details) {

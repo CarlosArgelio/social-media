@@ -1,17 +1,28 @@
 const express = require('express');
 
 const response = require('../../../network/response');
-const Controller = require('./controller');
+const Controller = require('./index');
 
 const router = express.Router();
 
 router.get('/', function (req, res) {
-  try {
-    const list = Controller.list();
-    response.success(req, res, list, 200);
-  } catch (error) {
-    response.error(req, res, 'Unexpected error', 400, error);
-  }
-})
+  Controller.list()
+    .then((list) => {
+      response.success(req, res, list, 200)
+    })
+    .catch((err) => {
+      response.error(req, res, err, 500, err);
+    });
+});
+
+router.get('/:id', function (req, res) {
+  Controller.get(req.params.id)
+    .then((user) => {
+      response.success(req, res, user, 200);
+    })
+    .catch((err) => {
+      response.error(req, res, err, 500, err);
+    });
+});
 
 module.exports = router

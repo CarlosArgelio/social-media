@@ -1,4 +1,5 @@
 const { formatDate } = require('../utils/datetimes')
+const { legthBytes } = require('../utils/legth.bytes')
 
 function formatResponse(req, res, message, status, statusError, details) {
   let statusCode = status;
@@ -13,7 +14,8 @@ function formatResponse(req, res, message, status, statusError, details) {
       Error: statusError,
       ResponseMetadata: {
         HTTPHeaders: {
-          'Content-Type': formatDate()
+          // 'content-length': legthBytes(statusMessage),
+          'Content-Type': formatDate(),
         },
         HTTPStatusCode: statusCode,
       },
@@ -31,5 +33,5 @@ exports.error = function (req, res, message, status, details) {
   let messageResponse = message || 'Internal server error';
   let statusCode = status || 500;
   let detailsConsole = details || '';
-  formatResponse(req, res, messageResponse, statusCode, false, detailsConsole)
+  formatResponse(req, res, messageResponse, statusCode, true, detailsConsole)
 }

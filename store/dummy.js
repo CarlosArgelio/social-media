@@ -15,7 +15,7 @@ async function get(table, id) {
 
 async function upsert(table, data) {
     // eslint-disable-next-line no-undef
-    db[collection].push(data);
+    db[table].push(data);
 }
 
 // eslint-disable-next-line no-unused-vars

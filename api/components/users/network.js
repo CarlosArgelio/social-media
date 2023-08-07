@@ -5,7 +5,7 @@ const Controller = require('./index');
 
 const router = express.Router();
 
-router.get('/', list);
+router.get('/list', list);
 router.get('/:id', get);
 router.post('/', upsert);
 router.put('/', upsert);

@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  title: CoMa API
+  description: API v1 CoMa
+  version: '1'
+components:
+  schemas:
+    headersResponse:
+      title: header response
+      type: object
+      properties:
+        ResponseMetadata:
+          type: object
+          properties:
+            HTTPHeaders:
+              type: object
+              properties:
+                Content-Type:
+                  type: string
+    Error:
+      type: boolean
+      description: |
+        If response have Error == True then response have error else response not error
+    id:
+      type: string
+
+    Users:
+      title: Users
+      type: object
+      required:
+        - name
+      properties:
+        Error:
+          type: boolean
+        ResponseMetadata:
+          type: object
+          properties:
+            properties:
+              HTTPHeaders:
+                type: object
+                properties:
+                  Content-Type:
+                    type: string
+          HTTPStatusCode:
+            type: integer
+        id:
+          schema:
+            $ref: '#/components/schemas/id'
+        name:
+          type: string
+          description: Ther name user
+    CreateUsers:
+      title: Create users
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          schema:
+            $ref: '#/components/schemas/id'
+        name:
+          type: string
+          description: Ther name user
+
+paths:
+  /api/users:
+    post:
+      summary: create user
+      description: |
+        Create user
+      tags:
+        - users
+      requestBody:
+        description: Create event
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUsers'
+      responses:
+        '200':
+          description: create event succeful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateEvent'
+  /api/users/list:
+    get:
+      summary: List users
+      description: |
+        List users
+      tags:
+        - users
+      responses:
+        '200':
+          description: List users succesfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+  /api/users/{id}:
+    get:
+      summary: Unique user by id
+      description: |
+        Get id user
+      parameters:
+        - name: id
+          in: path
+          description: user id
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+      tags:
+        - users
+      responses:
+        '200':
+          description: List users succesfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+

@@ -5,6 +5,21 @@ const Controller = require('./index');
 
 const router = express.Router();
 
+/**
+* @swagger
+* components:
+*   schemas:
+*     User:
+*       type: object
+*       properties:
+*         name:
+*           type: string
+*           description: Name user
+*       required:
+*         - name
+*       example:
+*         name: Carlos Argelio
+*/
 router.get('/', list);
 router.get('/:id', get);
 router.post('/', upsert);

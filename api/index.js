@@ -5,7 +5,7 @@ const config = require('../config');
 const users = require('./components/users/network');
 
 // middlewares
-const { logErrors, errorHandler } = require('../middlewares/error.handler');
+const { logErrors, boomErrorHandler, errorHandler } = require('../middlewares/error.handler');
 
 // swagger
 const swaggerUi = require('swagger-ui-express');
@@ -21,6 +21,7 @@ app.use('/api/users', users)
 // middlewares
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(logErrors);
+app.use(boomErrorHandler);
 app.use(errorHandler);
 
 

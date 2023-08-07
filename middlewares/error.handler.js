@@ -14,7 +14,21 @@ function errorHandler (err, req, res, next) {
   response.error(req, res, message, 500);
 }
 
+function boomErrorHandler (err, req, res, next) {
+  if (err.isBoom) {
+    const { output } = err;
+    const errorBody = {
+      error: output.payload.error,
+      message: output.payload.message,
+    }
+    console.log(output.payload);
+    response.error(req, res, errorBody, output.statusCode);
+  }
+  next(err);
+}
+
 module.exports = {
   logErrors,
-  errorHandler
+  errorHandler,
+  boomErrorHandler
 };

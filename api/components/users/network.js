@@ -23,9 +23,11 @@ function list(req, res, next) {
 function get(req, res, next) {
   Controller.get(req.params.id)
     .then((user) => {
+      console.log(user)
       response.success(req, res, user, 200);
     })
     .catch((err) => {
+      console.log(err)
       next(err)
     });
 }

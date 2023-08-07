@@ -16,7 +16,7 @@ function formatResponse(req, res, message, status, statusError, details) {
       ResponseMetadata: {
         HTTPHeaders: {
           // 'content-length': legthBytes(statusMessage),
-          'Content-Type': formatDate(),
+          'date': formatDate(),
         },
         HTTPStatusCode: statusCode,
       },

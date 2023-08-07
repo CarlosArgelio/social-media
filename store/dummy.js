@@ -1,6 +1,6 @@
 const db = {
   'users': [
-    { id: "1", name: "Carlos" },
+    { id: "fb0fcad9-6795-4233-b4ee-a32b3adcae1a", name: "Carlos" },
   ],
 };
 

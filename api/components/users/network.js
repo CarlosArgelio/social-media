@@ -3,10 +3,18 @@ const express = require('express');
 const response = require('../../../network/response');
 const Controller = require('./index');
 
+const validatorHandler = require('../../../middlewares/validator.handler');
+// eslint-disable-next-line no-unused-vars
+const { userSchema, getUserSchema } = require('./schema');
+
 const router = express.Router();
 
 router.get('/list', list);
-router.get('/:id', get);
+router.get(
+  '/:id',
+  validatorHandler(getUserSchema, 'params'),
+  get
+);
 router.post('/', upsert);
 router.put('/', upsert);
 

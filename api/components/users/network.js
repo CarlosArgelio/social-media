@@ -5,17 +5,22 @@ const Controller = require('./index');
 
 const router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/', list);
+router.get('/:id', get);
+router.post('/', upsert);
+router.put('/', upsert);
+
+function list(req, res) {
   Controller.list()
     .then((list) => {
-      response.success(req, res, list, 200)
+      response.success(req, res, list, 200);
     })
     .catch((err) => {
       response.error(req, res, err, 500, err);
     });
-});
+}
 
-router.get('/:id', function (req, res) {
+function get(req, res) {
   Controller.get(req.params.id)
     .then((user) => {
       response.success(req, res, user, 200);
@@ -23,9 +28,9 @@ router.get('/:id', function (req, res) {
     .catch((err) => {
       response.error(req, res, err, 500, err);
     });
-});
+}
 
-router.post('/', function (req, res) {
+function upsert(req, res) {
   Controller.upsert(req.body)
     .then((user) => {
       response.success(req, res, user, 201);
@@ -33,6 +38,6 @@ router.post('/', function (req, res) {
     .catch((err) => {
       response.error(req, res, err, 500, err);
     });
-});
+}
 
 module.exports = router

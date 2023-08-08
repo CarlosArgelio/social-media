@@ -1,4 +1,5 @@
 const express = require('express');
+const boom = require('@hapi/boom');
 
 const response = require('../../../network/response');
 const Controller = require('./index');
@@ -14,7 +15,7 @@ router.post('/login', function(req, res, next) {
       response.success(req, res, token, 200);
     })
     .catch((err) => {
-      response.success(req, res, 'Invalid credentials', 500);
+      next(err);
     })
 });
 

@@ -1,3 +1,4 @@
+const boom = require('@hapi/boom');
 const auth = require('../../../auth');
 const TABLE = 'auth';
 
@@ -9,12 +10,16 @@ module.exports = (injectedStore) => {
 
   async function login(username, password) {
     const data = await store.query(TABLE, { username: username });
+    // validate username exists
+    if (!data || data.length === 0) {
+      throw boom.unauthorized();
+    }
     if (data.password === password) {
       // Generate token
       return auth.sign(data)
     }
     else {
-      throw new Error('Invalide credentials');
+      throw boom.forbidden();
     }
   }
 

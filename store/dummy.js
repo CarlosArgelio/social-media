@@ -5,7 +5,7 @@ const db = {
 };
 
 async function list(table) {
-    return db[table]
+    return db[table] || [];
 }
 
 async function get(table, id) {
@@ -18,8 +18,6 @@ async function upsert(table, data) {
       db[table] = [];
     }
     db[table].push(data);
-
-    console.log(db)
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -27,10 +25,17 @@ async function remove(table, id) {
     return true
 }
 
+async function query(table, q) {
+  let col = await list(table);
+  let keys = Object.keys(q);
+  let key = keys[0];
+  return col.filter(item => item[key] === q[key])[0] || null
+}
+
 module.exports = {
     list,
     get,
     upsert,
-    remove
-
+    remove,
+    query
 }

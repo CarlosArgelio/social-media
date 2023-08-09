@@ -14,6 +14,7 @@ async function get(table, id) {
 }
 
 async function upsert(table, data) {
+  console.log(data)
     if (!db[table]) {
       db[table] = [];
     }

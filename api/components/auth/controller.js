@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const boom = require('@hapi/boom');
 const auth = require('../../../auth');
 const TABLE = 'auth';
@@ -23,7 +24,7 @@ module.exports = (injectedStore) => {
     }
   }
 
-  function upsert(data) {
+  async function upsert(data) {
     const authData = {
       id: data.id,
     };
@@ -33,7 +34,7 @@ module.exports = (injectedStore) => {
     }
 
     if (data.password) {
-      authData.password = data.password;
+      authData.password = await bcrypt.hash(data.password, 5);
     }
 
     return store.upsert(TABLE, authData);

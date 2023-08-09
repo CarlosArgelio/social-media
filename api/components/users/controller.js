@@ -45,6 +45,7 @@ module.exports = (injectedStore) => {
         } else {
             throw boom.badRequest('Username and password are required');
         }
+        return store.upsert(TABLE, user);
     }
 
     return {

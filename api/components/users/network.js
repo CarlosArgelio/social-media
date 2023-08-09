@@ -1,5 +1,7 @@
 const express = require('express');
 
+
+const secure = require('./secure')
 const response = require('../../../network/response');
 const Controller = require('./index');
 
@@ -16,7 +18,11 @@ router.get(
   get
 );
 router.post('/', upsert);
-router.put('/', upsert);
+router.put(
+  '/',
+  secure('update'),
+  upsert
+);
 
 function list(req, res, next) {
   Controller.list()

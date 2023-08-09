@@ -11,18 +11,24 @@ module.exports = (injectedStore) => {
 
   async function login(username, password) {
     const data = await store.query(TABLE, { username: username });
-    // validate username exists
+
     if (!data || data.length === 0) {
-      throw boom.unauthorized();
+      throw boom.unauthorized('username or password are incorrect');
     }
-    if (data.password === password) {
-      // Generate token
-      return auth.sign(data)
+
+    return bcrypt.compare(password, data.password)
+      .then(isEqual => {
+        if (isEqual) {
+          // Generate token
+          return auth.sign(data)
+        } else {
+          throw boom.unauthorized('username or password are incorrect');
+        }
+      })
+      .catch((err) => {
+        throw err;
+      });
     }
-    else {
-      throw boom.forbidden();
-    }
-  }
 
   async function upsert(data) {
     const authData = {

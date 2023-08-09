@@ -15,7 +15,7 @@ router.post('/login', function(req, res, next) {
       response.success(req, res, token, 200);
     })
     .catch((err) => {
-      next(boom.conflict(err));
+      next(err);
     })
 });
 

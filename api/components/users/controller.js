@@ -1,6 +1,7 @@
 // const nanoid = require('nanoid');
 const uuid = require('uuid');
 const boom = require('@hapi/boom');
+const auth = require('../auth');
 
 const TABLE = 'users';
 
@@ -22,9 +23,11 @@ module.exports = (injectedStore) => {
       return user
     }
 
-    function upsert(body) {
+    async function upsert(body) {
         const user = {
             name: body.name,
+            username: body.username,
+            password: body.password,
         };
 
         if (body.id) {
@@ -33,6 +36,15 @@ module.exports = (injectedStore) => {
             user.id = uuid.v4();
         }
 
+        if (body.password && body.username) {
+            await auth.upsert({
+              id: user.id,
+              username: user.username,
+              password: user.password,
+            })
+        } else {
+            throw boom.badRequest('Username and password are required');
+        }
         return store.upsert(TABLE, user);
     }
 

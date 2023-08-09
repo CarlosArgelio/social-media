@@ -36,15 +36,15 @@ module.exports = (injectedStore) => {
             user.id = uuid.v4();
         }
 
-        if (body.password || body.username) {
+        if (body.password && body.username) {
             await auth.upsert({
               id: user.id,
               username: user.username,
               password: user.password,
             })
+        } else {
+            throw boom.badRequest('Username and password are required');
         }
-
-        return store.upsert(TABLE, user);
     }
 
     return {

@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:5
+    environment:
+      - MYSQL_DATABASE=social_media
+      - MYSQL_USER=carlos
+      - MYSQL_ROOT_PASSWORD=admin123
+      - MYSQL_PORT=3307
+    ports:
+      - 3307:3307
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+  mysql-workbench:
+    image: lscr.io/linuxserver/mysql-workbench:latest
+    container_name: mysql-workbench
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/config:/config
+    ports:
+      - 3000:3000
+      - 3001:3001
+    cap_add:
+      - IPC_LOCK
+    restart: unless-stopped

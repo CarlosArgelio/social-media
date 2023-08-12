@@ -142,4 +142,6 @@ package-lock.json
 # SvelteKit build / generate output
 .svelte-kit
 
+mysql_data
+
 # End of https://www.toptal.com/developers/gitignore/api/node

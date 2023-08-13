@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize');
+const setUpModels = require('../store/models/index');
 
 const config = require('../config');
 
@@ -10,5 +11,8 @@ const sequelize = new Sequelize(URI, {
     dialect: `${config.database.db}`,
     logging: true
 });
+
+setUpModels(sequelize);
+sequelize.sync();
 
 module.exports = sequelize;

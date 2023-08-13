@@ -2,9 +2,18 @@ const sequelize = require('../libs/sequelize')
 
 const config = require('../config');
 
-async function handleCon() {
-    const rta = await sequelize.query('SELECT 1 + 1 AS result;');
-    return rta;
+async function list(table) {
+  const query = `SELECT * FROM ${table};`
+  try {
+    const [data] = await sequelize.query(query);
+    return data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
 }
 
-handleCon().then(console.log).catch(console.log);
+
+module.exports = {
+  list
+}

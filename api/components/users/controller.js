@@ -12,6 +12,7 @@ module.exports = (injectedStore) => {
     }
 
     function list() {
+      console.log('Se ejecuto la lista con esta conexcion ==>', injectedStore)
       return store.list(TABLE);
     }
 

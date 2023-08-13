@@ -1,5 +1,3 @@
-const boom = require('@hapi/boom');
-
 async function list(table) {
   try {
     const res = await table.findAll();

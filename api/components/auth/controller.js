@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const boom = require('@hapi/boom');
 const auth = require('../../../auth');
-const TABLE = 'auth';
+const { models } = require('../../../libs/sequelize');
+const TABLE = models.Auth;
 
 module.exports = (injectedStore) => {
   let store = injectedStore;

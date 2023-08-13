@@ -13,6 +13,8 @@ const sequelize = new Sequelize(URI, {
 });
 
 setUpModels(sequelize);
-sequelize.sync();
+
+
+// sequelize.sync();
 
 module.exports = sequelize;

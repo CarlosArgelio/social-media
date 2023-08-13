@@ -11,7 +11,9 @@ module.exports = (injectedStore) => {
   }
 
   async function login(username, password) {
-    const data = await store.query(TABLE, { username: username });
+    let data = await store.query(TABLE, { username: username });
+    data = data[0].dataValues;
+    // console.log('data==> ', data);
 
     if (!data || data.length === 0) {
       throw boom.unauthorized('username or password are incorrect');

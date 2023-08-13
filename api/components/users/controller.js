@@ -2,8 +2,9 @@
 const uuid = require('uuid');
 const boom = require('@hapi/boom');
 const auth = require('../auth');
+const { models } = require('../../../libs/sequelize');
 
-const TABLE = 'users';
+const TABLE = models.User;
 
 module.exports = (injectedStore) => {
     let store = injectedStore;

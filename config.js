@@ -5,10 +5,14 @@ module.exports = {
       port: process.env.API_PORT || 3000,
       secret: process.env.API_SECRET || 'api-secret'
     },
-    mysql: {
-      host: process.env.MYSQL_HOST || '',
-      user: process.env.MYSQL_USER || '',
-      password: process.env.MYSQL_PASSWORD || '',
-      database: process.env.MYSQL_DATABASE || ''
+    database: {
+      db: process.env.DATABASE_TYPE || 'sqalite'
+    },
+    postgres: {
+      host: process.env.POSTGRES_HOST || '',
+      user: process.env.POSTGRES_USER || '',
+      password: process.env.POSTGRES_PASSWORD || '',
+      database: process.env.POSTGRES_DATABASE || '',
+      port: process.env.POSTGRES_PORT || ''
     }
 }

@@ -1,29 +1,21 @@
 version: '3.3'
 
 services:
-  mysql:
-    image: mysql:5
+  postgres:
+    image: postgres:13
     environment:
-      - MYSQL_DATABASE=social_media
-      - MYSQL_USER=carlos
-      - MYSQL_ROOT_PASSWORD=admin123
-      - MYSQL_PORT=3307
+      - POSTGRES_DB=social_media
+      - POSTGRES_USER=carlos
+      - POSTGRES_PASSWORD=admin123
     ports:
-      - 3307:3307
+      - 5432:5432
     volumes:
-      - ./mysql_data:/var/lib/mysql
-  mysql-workbench:
-    image: lscr.io/linuxserver/mysql-workbench:latest
-    container_name: mysql-workbench
+      - ./postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-    volumes:
-      - /path/to/config:/config
+      - PGADMIN_DEFAULT_EMAIL=admin@mail.com
+      - PGADMIN_DEFAULT_PASSWORD=root
     ports:
-      - 3000:3000
-      - 3001:3001
-    cap_add:
-      - IPC_LOCK
-    restart: unless-stopped
+      - 5050:80

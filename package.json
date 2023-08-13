@@ -14,9 +14,9 @@
     "eslint": "^8.46.0",
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "mysql2": "^3.6.0",
     "nodemon": "^3.0.1",
-    "prettier": "^3.0.1"
+    "prettier": "^3.0.1",
+    "sudo": "^1.0.3"
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",
@@ -26,7 +26,12 @@
     "express": "^4.18.2",
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.0",
     "nanoid": "^2.1.7",
+    "pg": "^8.11.2",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.32.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.0"

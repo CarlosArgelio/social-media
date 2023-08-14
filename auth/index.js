@@ -19,6 +19,9 @@ const check = {
         throw boom.unauthorized('Not authorized');
       }
     },
+    logged: function (req, owner) {
+      const decoded = decodeHeader(req);
+    },
 }
 
 function getToken(auth) {

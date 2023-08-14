@@ -4,7 +4,8 @@ const boom = require('@hapi/boom');
 const auth = require('../auth');
 const { models } = require('../../../libs/sequelize');
 
-const TABLE = models.User;
+const TABLE_USERS = models.User;
+const TABLE_FOLLOW = models.Follow;
 
 module.exports = (injectedStore) => {
     let store = injectedStore;
@@ -13,12 +14,11 @@ module.exports = (injectedStore) => {
     }
 
     function list() {
-      console.log('Se ejecuto la lista con esta conexcion ==>', injectedStore)
-      return store.list(TABLE);
+      return store.list(TABLE_USERS);
     }
 
     async function get(id) {
-      const user = await store.get(TABLE, id);
+      const user = await store.get(TABLE_USERS, id);
       if (!user) {
         throw boom.notFound('User not found');
       }
@@ -47,12 +47,17 @@ module.exports = (injectedStore) => {
         } else {
             throw boom.badRequest('Username and password are required');
         }
-        return store.upsert(TABLE, user);
+        return store.upsert(TABLE_USERS, user);
+    }
+
+    async function follow(from, to) {
+        return await store.upsertV2(TABLE_FOLLOW, { id: uuid.v4(), userFrom: from, userTo: to });
     }
 
     return {
         list,
         get,
         upsert,
+        follow
     };
 }

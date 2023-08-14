@@ -58,12 +58,16 @@ async function query(table, query) {
     console.log(err);
     throw err;
   }
+}
 
+async function upsertV2(table, data) {
+  return insert(table, data)
 }
 
 module.exports = {
   list,
   get,
   upsert,
-  query
+  query,
+  upsertV2
 }

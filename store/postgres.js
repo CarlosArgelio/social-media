@@ -1,4 +1,9 @@
+const { models } = require('../libs/sequelize')
+
 async function list(table) {
+  if (table === 'users') {
+    table = models.User
+  }
   try {
     const res = await table.findAll();
     return res;

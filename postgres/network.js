@@ -15,7 +15,7 @@ router.post('/:table', insert);
 router.put('/:table/:id', update);
 
 async function list(req, res, next) {
-  const data =  await Store.list(TABLE_USERS)
+  const data =  await Store.list(req.params.table)
   response.success(req, res, data, 200);
 }
 async function get(req, res, next) {

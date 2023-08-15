@@ -4,7 +4,7 @@ const boom = require('@hapi/boom');
 const auth = require('../auth');
 const { models } = require('../../../libs/sequelize');
 
-const TABLE_USERS = models.User;
+const TABLE_USERS = 'users';
 const TABLE_FOLLOW = models.Follow;
 
 module.exports = (injectedStore) => {

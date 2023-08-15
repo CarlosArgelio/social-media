@@ -23,5 +23,12 @@ module.exports = {
     postgresService: {
       host: process.env.POSTGRES_SERVICE_HOST || 'localhost',
       port: process.env.POSTGRES_SERVICE_PORT || 3001
+    },
+    cacheService: {
+      host: process.env.CACHE_SERVICE_HOST || 'localhost',
+      port: process.env.CACHE_SERVICE_PORT || 3003,
+      password: process.env.CACHE_SERVICE_PASSWORD || '',
+      redisHost: process.env.REDIS_HOST || 'localhost',
+      redisPort: process.env.REDIS_PORT || 6379
     }
 }

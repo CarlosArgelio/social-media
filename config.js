@@ -6,6 +6,9 @@ module.exports = {
       port: process.env.API_PORT || 3000,
       secret: process.env.API_SECRET || 'api-secret'
     },
+    post: {
+      port: process.env.POST_SERVICE_PORT || 3002,
+    },
     database: {
       db: process.env.DATABASE_TYPE || 'sqalite'
     },

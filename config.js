@@ -15,5 +15,8 @@ module.exports = {
       password: process.env.POSTGRES_PASSWORD || '',
       database: process.env.POSTGRES_DATABASE || '',
       port: process.env.POSTGRES_PORT || ''
+    },
+    postgresService: {
+      port: process.env.POSTGRES_SERVICE_PORT || 3001
     }
 }

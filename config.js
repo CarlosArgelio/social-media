@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 module.exports = {
+    remoteDB: process.env.REMOTE_DB || false,
     env: process.env.NODE_ENV || 'development',
     api: {
       port: process.env.API_PORT || 3000,

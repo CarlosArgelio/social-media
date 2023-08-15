@@ -54,10 +54,19 @@ module.exports = (injectedStore) => {
         return await store.upsertV2(TABLE_FOLLOW, { id: uuid.v4(), userFrom: from, userTo: to });
     }
 
+    async function following(user) {
+      const join = {}
+      join[TABLE_USERS] = 'user_to'; // { user: 'user_to' }
+      const query = { user_from: user };
+
+      return await store.query(TABLE_FOLLOW, query, join);
+    }
+
     return {
         list,
         get,
         upsert,
-        follow
+        follow,
+        following
     };
 }

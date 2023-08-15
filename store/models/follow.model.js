@@ -39,7 +39,7 @@ const FollowSchema = {
     allowNull: true,
     type: DataTypes.DATE,
     field: 'updated_at'
-  }
+  },
 }
 
 class Follow extends Model {

@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const config = require('../config');
 const users = require('./components/users/network');
 const auth = require('./components/auth/network');
+const post = require('./components/post/network');
+
 
 // middlewares
 const { logErrors, boomErrorHandler, errorHandler } = require('../middlewares/error.handler');
@@ -20,6 +22,8 @@ app.use(bodyParser.json());
 // ROUTERS
 app.use('/api/users', users)
 app.use('/api/auth', auth)
+app.use('/api/posts', post)
+
 
 // middlewares
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
